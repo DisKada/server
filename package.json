@@ -1,10 +1,27 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Create server for QuoraKada",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "db:create": "npx sequelize-cli db:create",
+    "db:drop": "npx sequelize-cli db:drop",
+    "db:migrate": "npx sequelize-cli db:migrate",
+    "db:seed": "npx sequelize-cli db:seed:all",
+    "db:seed:undo": "npx sequelize-cli db:seed:undo:all",
+    "db:create:development": "NODE_ENV=development npm run db:create",
+    "db:create:test": "NODE_ENV=test npm run db:create",
+    "db:drop:development": "NODE_ENV=development npm run db:drop",
+    "db:drop:test": "NODE_ENV=test npm run db:drop",
+    "db:migrate:development": "NODE_ENV=development npm run db:migrate",
+    "db:migrate:test": "NODE_ENV=test npm run db:migrate",
+    "db:seed:development": "NODE_ENV=development npm run db:seed",
+    "db:seed:test": "NODE_ENV=test npm run db:seed",
+    "db:seed:undo:development": "NODE_ENV=development npm run db:seed:undo",
+    "db:seed:undo:test": "NODE_ENV=test npm run db:seed:undo",
+    "test": "NODE_ENV=test npx jest",
+    "dev": "NODE_ENV=development npx nodemon bin/http.js",
+    "start": "node bin/http.js"
   },
   "repository": {
     "type": "git",
