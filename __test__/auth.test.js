@@ -158,63 +158,63 @@ describe('Login user POST /users/login', function() {
                     if(err) done(err);
                     expect(status).toBe(200)
 					expect(typeof body).toEqual('object')
-                    expect(body).toHaveProperty('acces_token')
+                    expect(body).toHaveProperty('access_token')
 					expect(typeof body.access_token).toEqual('string')
                     done();
                 })
         })
     })
-    // describe('Error login', function() {
-    //     it('should send response 400 status code - invalid password', function(done) {
-    //         let body = {
-    //             email: email,
-    //             password:'wrong password'
-    //         }
-    //         request(app)
-    //             .post('/users/login')
-    //             .send(body)
-    //             .end(function (res, send) {
-    //                 const {body, status} = res
-    //                 if(err) done(err);
+    describe('Error login', function() {
+        it('should send response 400 status code - invalid password', function(done) {
+            let body = {
+                email: email,
+                password:'wrong password'
+            }
+            request(app)
+                .post('/users/login')
+                .send(body)
+                .end((err, res) => {
+                    const {body, status} = res
+                    if(err) done(err);
 
-    //                 expect(status).toBe(400)
-    //                 expect(body).toHaveProperty('message','Invalid Email or password')
-    //                 done()
-    //             })
-    //     })
-    //     it('should send response 400 status code - invalid email', function(done) {
-    //         let body = {
-    //             email: 'wrong email',
-    //             password: password
-    //         }
-    //         request(app)
-    //             .post('/users/login')
-    //             .send(body)
-    //             .end(function (res, send) {
-    //                 const {body, status} = res
-    //                 if(err) done(err);
+                    expect(status).toBe(401)
+                    expect(body).toHaveProperty('message','Invalid Email or Password')
+                    done()
+                })
+        })
+        it('should send response 400 status code - invalid email', function(done) {
+            let body = {
+                email: 'wrong email',
+                password: password
+            }
+            request(app)
+                .post('/users/login')
+                .send(body)
+                .end((err, res) => {
+                    const {body, status} = res
+                    if(err) done(err);
 
-    //                 expect(status).toBe(400)
-    //                 expect(body).toHaveProperty('message','Invalid Email or password')
-    //                 done()
-    //             })
-    //     })
-    //     it('should send response 401 status code - error email or password cannot be null', function(done) {
-    //         let body = {
-    //             email: '',
-    //             password: ''
-    //         }
-    //         request(app)
-    //             .post('/users/login')
-    //             .send(body)
-    //             .end(function (res, send) {
-    //                 const {body, status} = res
-    //                 if(err) done(err);
+                    expect(status).toBe(401)
+                    expect(body).toHaveProperty('message','Invalid Email or Password')
+                    done()
+                })
+        })
+        it('should send response 401 status code - error email or password cannot be null', function(done) {
+            let body = {
+                email: '',
+                password: ''
+            }
+            request(app)
+                .post('/users/login')
+                .send(body)
+                .end((err, res) =>{
+                    const {body, status} = res
+                    if(err) done(err);
 
-    //                 expect(status).toBe(400)
-    //                 expect(body).toHaveProperty('message','Email or Password is required')
-    //                 done()
-    //             })
-    //     })
-    // })
+                    expect(status).toBe(400)
+                    expect(body).toHaveProperty('message','Email or Password is required')
+                    done()
+                })
+        })
+    })
 })

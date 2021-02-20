@@ -20,7 +20,7 @@
     "db:seed:test": "SET NODE_ENV=test&npm run db:seed",
     "db:seed:undo:development": "SET NODE_ENV=development&npm run db:seed:undo",
     "db:seed:undo:test": "SET NODE_ENV=test&npm run db:seed:undo",
-    "test": "SET NODE_ENV=test&npx jest",
+    "test": "SET NODE_ENV=test&npx jest --runInBand --detectOpenHandles --forceExit",
     "dev": "SET NODE_ENV=development&npx nodemon bin/http.js",
     "start": "node bin/http.js"
   },

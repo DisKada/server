@@ -1,6 +1,7 @@
 const { User } = require('../models')
 const {generateToken} = require('../helpers/jwt')
-const {comparePassword} = require('../helpers/bcrypt')
+const {comparePassword} = require('../helpers/bcrypt');
+const user = require('../models/user');
 
 class UserController {
     static async login(req, res, next) {
@@ -52,7 +53,7 @@ class UserController {
     
     static async getList (req, res, next) {
         try {
-            const list = await User.findAll({where:{status:'verified'}})
+            const list = await User.findAll()
             res.status(200).json(list)
         } catch (err) {
             next(err) 
@@ -63,7 +64,7 @@ class UserController {
         const {id} = req.params
         try {
             const list = await User.findOne({where : {id}})
-            if (!product) {
+            if (!list) {
                 next ({name : 'UserNotFound'})
             } else {
                 res.status(200).json(list)                
@@ -84,7 +85,7 @@ class UserController {
         }
         try {
             const user = await User.findOne( { where: { id } } )
-            if (!product) {
+            if (!user) {
                 next ( { name: 'UserNotFound' } )
             } else {
                 try {
