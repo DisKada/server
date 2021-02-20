@@ -11,22 +11,26 @@ module.exports = {
       username: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
       },
       email: {
         type: Sequelize.STRING,
-        allowNull: false,
         unique: true,
+        allowNull: false,
       },
       password: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      province: {
+      status: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
-      avatar: {
+      visi: {
+        type: Sequelize.STRING
+      },
+      misi: {
+        type: Sequelize.STRING
+      },
+      image: {
         type: Sequelize.STRING
       },
       createdAt: {
