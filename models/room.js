@@ -15,8 +15,16 @@ module.exports = (sequelize, DataTypes) => {
   };
   room.init({
     name: DataTypes.STRING,
-    players: DataTypes.JSON,
-    admin: DataTypes.STRING
+    players: {
+      type : DataTypes.JSON,
+      validate : {
+        isLessThanFour(value){
+          if(Object.keys(value).length > 40) {
+            throw new Error('Maximum player is 40')
+          }
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'room',

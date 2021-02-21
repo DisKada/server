@@ -14,9 +14,6 @@ module.exports = {
       players: {
         type: Sequelize.JSON
       },
-      admin: {
-        type: Sequelize.STRING
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -1,7 +1,6 @@
 const { User } = require('../models')
 const {generateToken} = require('../helpers/jwt')
 const {comparePassword} = require('../helpers/bcrypt');
-const user = require('../models/user');
 
 class UserController {
     static async login(req, res, next) {
@@ -21,7 +20,7 @@ class UserController {
                         email: user.email,
                     }
                     const access_token = generateToken ( payload );
-                    res.status(200).json({access_token});
+                    res.status(200).json({access_token,username: user.username});
                 } else {
 
                     return next( { name: 'InvalidEmailOrPassword'} );
