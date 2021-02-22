@@ -21,7 +21,7 @@ class UserController {
                         email: user.email,
                     }
                     const access_token = generateToken ( payload );
-                    res.status(200).json({access_token});
+                    res.status(200).json({access_token, username: user.username, id: user.id});
                 } else {
 
                     return next( { name: 'InvalidEmailOrPassword'} );
@@ -53,7 +53,7 @@ class UserController {
     
     static async getList (req, res, next) {
         try {
-            const list = await User.findAll()
+            const list = await User.findAll({where: {status: 'verified'}, attributes: { exclude: ['password'] } })
             res.status(200).json(list)
         } catch (err) {
             next(err) 
@@ -61,9 +61,10 @@ class UserController {
     }
 
     static async getUserById (req, res, next) {
+        console.log('masuk sinii')
         const {id} = req.params
         try {
-            const list = await User.findOne({where : {id}})
+            const list = await User.findOne({where : {id}, attributes: { exclude: ['password'] } })
             if (!list) {
                 next ({name : 'UserNotFound'})
             } else {
@@ -76,12 +77,18 @@ class UserController {
 
     static async editUser (req, res, next) {
         const { id } = req.params;
-        const { visi,misi,image } = req.body;
+        const { visi,misi,image,partai,pekerjaan,pendidikan,tempat_lahir,tanggal_lahir,calon } = req.body;
 
         const editUser = {
             visi,
             misi,
-            image
+            image,
+            partai,
+            pekerjaan,
+            pendidikan,
+            tempat_lahir,
+            tanggal_lahir,
+            calon
         }
         try {
             const user = await User.findOne( { where: { id } } )

@@ -2,8 +2,9 @@ const {cekToken} = require('../helpers/jwt')
 const { User } = require('../models') 
 
 async function authenticate (req,res,next) {
-    try {
+	try {
 		const { access_token } = req.headers;
+		console.log(access_token, '<<<')
 		if (!access_token) {
 			next({
 				name: 'NotLoginYet',
@@ -30,15 +31,15 @@ async function authenticate (req,res,next) {
 	}
  }
 
- function authorize (req, res, next) {
-    if (req.userid.status === 'verified') {
-		next();
-	} else {
-		next({
-			name: 'NotGovernor',
-		});
-	}
- }
+//  function authorize (req, res, next) {
+//     if (req.userid.status === 'verified') {
+// 		next();
+// 	} else {
+// 		next({
+// 			name: 'NotGovernor',
+// 		});
+// 	}
+//  }
 
 
- module.exports = {authenticate,authorize}
+ module.exports = {authenticate}

@@ -44,7 +44,13 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.STRING,
     visi: DataTypes.STRING,
     misi: DataTypes.STRING,
-    image: DataTypes.STRING
+    image: DataTypes.STRING,
+    partai: DataTypes.STRING,
+    pekerjaan: DataTypes.STRING,
+    pendidikan: DataTypes.STRING,
+    tempat_lahir: DataTypes.STRING,
+    tanggal_lahir: DataTypes.DATEONLY,
+    calon: DataTypes.STRING
   }, {
     hooks: {
       beforeCreate: (instance, options) => {
