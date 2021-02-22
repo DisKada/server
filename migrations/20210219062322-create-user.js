@@ -33,6 +33,24 @@ module.exports = {
       image: {
         type: Sequelize.STRING
       },
+      partai: {
+        type: Sequelize.STRING
+      },
+      pekerjaan: {
+        type: Sequelize.STRING
+      },
+      pendidikan: {
+        type: Sequelize.STRING
+      },
+      tempat_lahir: {
+        type: Sequelize.STRING
+      },
+      tanggal_lahir: {
+        type: Sequelize.DATEONLY
+      },
+      calon: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
