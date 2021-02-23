@@ -14,7 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   room.init({
-    name: DataTypes.STRING,
+    name: {
+      type :DataTypes.STRING,
+      unique: true
+    },
     players: {
       type : DataTypes.JSON,
       validate : {

@@ -1,11 +1,10 @@
 const { room } = require("../models")
 class RoomController {
     static create(roomData, callback){
-  
       let newRoom = {
         name : roomData.name,
         players : {
-          ["1-" + roomData.creator] : 0
+          ["1-" + roomData.creator] : 0,
         }
       }
   
@@ -32,7 +31,7 @@ class RoomController {
               let playerKey = `${index+1}-${payload.playerName}`
               result.players[playerKey] = 0
               result.changed("players", true)
-              console.log(result.dataValues,'sesudah change')
+              // console.log(result.dataValues,'sesudah change')
             //   console.log(result.dataValues,'ini result')
             //   return Promise.all([result.save(), playerKey])
             callback(null, {...result.dataValues, playerKey}) //jika berhasil, bawa data room yang telah terupdate dengan pemain baru agar dapat diambil oleh listener job nya
