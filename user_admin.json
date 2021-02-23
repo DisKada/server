@@ -1,0 +1,47 @@
+[
+    {
+      "email": "calon1@gmail.com",
+      "password": "123456",
+      "username": "Bambang Atmojo",
+      "status": "verified",
+      "visi": "Memajukan pendidikan rakyat",
+      "misi": "Memberantas korupsi",
+      "image": "https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/1966.png&w=350&h=254",
+      "partai": "PDIP",
+      "pekerjaan": "Bussiness Man",
+      "pendidikan": "S2 Chicago University",
+      "tempat_lahir": "Palembang",
+      "tanggal_lahir": "02-03-1978",
+      "calon": "Gubernur Jakarta"
+    },
+    {
+      "email": "calon2@gmail.com",
+      "password": "123456",
+      "username": "Restu Ibunda",
+      "status": "verified",
+      "visi": "Memajukan ekonomi rakyat",
+      "misi": "Memberantas penyelewangan aturan",
+      "image": "https://cdn.britannica.com/34/197534-050-83C616C4/James-Brown-1991.jpg",
+      "partai": "Demokrat",
+      "pekerjaan": "Bussiness Man",
+      "pendidikan": "S2 Sydney University",
+      "tempat_lahir": "Bandung",
+      "tanggal_lahir": "04-05-1982",
+      "calon": "Gubernur Jakarta"
+    },
+    {
+      "email": "a@gmail.com",
+      "password": "123456",
+      "username": "jajang",
+      "status": "unverified",
+      "visi": "",
+      "misi": "",
+      "image": "",
+      "partai": "",
+      "pekerjaan": "",
+      "pendidikan": "",
+      "tempat_lahir": "",
+      "tanggal_lahir": null,
+      "calon": ""
+    }
+  ]
