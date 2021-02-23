@@ -2,9 +2,10 @@ const {cekToken} = require('../helpers/jwt')
 const { User } = require('../models') 
 
 async function authenticate (req,res,next) {
+	// console.log('masukk auth')
 	try {
 		const { access_token } = req.headers;
-		console.log(access_token, '<<<')
+		// console.log(access_token, '<<<')
 		if (!access_token) {
 			next({
 				name: 'NotLoginYet',
@@ -27,6 +28,7 @@ async function authenticate (req,res,next) {
 			}
 		}
 	} catch (err) {
+		console.log(err)
 		next(err);
 	}
  }

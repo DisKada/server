@@ -77,17 +77,17 @@ class UserController {
 
     static async editUser (req, res, next) {
         const { id } = req.params;
-        const { visi,misi,image,partai,pekerjaan,pendidikan,tempat_lahir,tanggal_lahir,calon } = req.body;
+        const { visi,misi,image,partai,pekerjaan,pendidikan,username,calon, status } = req.body;
 
         const editUser = {
+            username,
+            status,
             visi,
             misi,
             image,
             partai,
             pekerjaan,
             pendidikan,
-            tempat_lahir,
-            tanggal_lahir,
             calon
         }
         try {
