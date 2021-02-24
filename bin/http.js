@@ -6,6 +6,7 @@ const peerServer = ExpressPeerServer(server, {
   debug: true
 });
 app.use('/peerjs', peerServer);
+let counter = 0
 
 const RoomController = require("../controllers/roomController")
 io.on('connection', function(socket){
@@ -20,7 +21,7 @@ io.on('connection', function(socket){
     // console.log(msg, '<<<<< msg')
     io.in(`${payload.room}`).emit('msgServer', msg)
   })
-  
+
   socket.on('create-room', function(roomData, id){
     // console.log(id);
     RoomController.create(roomData, function(err, createdRoom){
@@ -28,6 +29,9 @@ io.on('connection', function(socket){
       if(err) {
         socket.emit('showError', 'Failed to create room')
       } else {
+        counter++
+        io.emit('counter', counter)
+        io.emit('maxPlayer', roomData.max)
         io.emit('roomCreated', createdRoom) //send room to all client
         socket.join(createdRoom.name) //daftarin creator room ke room yang dia bikin
         socket.broadcast.emit('userConnected', id);
@@ -43,6 +47,8 @@ io.on('connection', function(socket){
       if (err){
         socket.emit('showError', 'Failed to join '+ payload.roomName )
       } else  {
+        counter++
+        io.emit('counter', counter)
         socket.join(payload.roomName) //daftarin player ke room yang dia mau join
         // io.to(payload.roomName).broadcast.emit('userConnected', id) // kabarin ke anggota room lain kalo ada yang join
         socket.broadcast.emit('userConnected', id);
@@ -77,6 +83,8 @@ io.on('connection', function(socket){
     socket.leave(payload.roomName)
     RoomController.leave(payload, function(err, result){
       console.log(result,'---ini dari database')
+      counter--
+      io.emit('counter', counter)
       io.to(payload.roomName).emit('player-left', result.players) // kabarin ke anggota room lain kalo ada yang leave
       io.emit('update-client-room')
     })
@@ -89,6 +97,8 @@ io.on('connection', function(socket){
         })
       }
     })
+    counter = 0
+    io.emit('counter', counter)
     socket.broadcast.to(roomName).emit('endRoom') //trigger room untuk menghentikan permainan
   })
 })
