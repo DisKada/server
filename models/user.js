@@ -42,8 +42,8 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     status: DataTypes.STRING,
-    visi: DataTypes.STRING,
-    misi: DataTypes.STRING,
+    visi: DataTypes.TEXT,
+    misi: DataTypes.TEXT,
     image: DataTypes.STRING,
     partai: DataTypes.STRING,
     pekerjaan: DataTypes.STRING,
