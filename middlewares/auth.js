@@ -1,18 +1,14 @@
 const {cekToken} = require('../helpers/jwt')
 const { User } = require('../models') 
-
 async function authenticate (req,res,next) {
-	// console.log('masukk auth')
 	try {
 		const { access_token } = req.headers;
-		// console.log(access_token, '<<<')
 		if (!access_token) {
 			next({
 				name: 'NotLoginYet',
 			});
 		} else {
 			const decoded = cekToken(access_token);
-			// console.log(decoded);
 			req.userid = decoded;
 			const user = await User.findOne({
 				where: {
@@ -22,26 +18,11 @@ async function authenticate (req,res,next) {
 			if (user) {
 				next();
 			} else {
-				next({
-					name: 'NotLoginYet',
-				});
+				next({name: 'NotLoginYet',});
 			}
 		}
 	} catch (err) {
-		console.log(err)
 		next(err);
 	}
  }
-
-//  function authorize (req, res, next) {
-//     if (req.userid.status === 'verified') {
-// 		next();
-// 	} else {
-// 		next({
-// 			name: 'NotGovernor',
-// 		});
-// 	}
-//  }
-
-
  module.exports = {authenticate}

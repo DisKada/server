@@ -1,8 +1,6 @@
 const { User } = require('../models')
 const {generateToken} = require('../helpers/jwt')
 const {comparePassword} = require('../helpers/bcrypt');
-const user = require('../models/user');
-
 class UserController {
     static async login(req, res, next) {
         const {email, password } = req.body;
@@ -27,17 +25,12 @@ class UserController {
                     return next( { name: 'InvalidEmailOrPassword'} );
                 }
             }
-            
         } catch ( err ) {
-            console.log(err)
             return next(err);
-
         }
     }
     static async register (req, res, next) {
-
         const { username, email, password } = req.body;
-
         if (!username, !email, !password ) {
             return next ( { name: 'InvalidEmailOrPassword' } );
         }
@@ -46,11 +39,9 @@ class UserController {
             const response = { id: user.id,username: user.username, email: user.email}
             return res.status( 201 ).json( response )
         } catch ( err ) {
-            console.log(err)
             next( err )
         }
     }
-    
     static async getList (req, res, next) {
         try {
             const list = await User.findAll({where: {status: 'verified'}, attributes: { exclude: ['password'] } })
@@ -59,9 +50,7 @@ class UserController {
             next(err) 
         }
     }
-
     static async getUserById (req, res, next) {
-        console.log('masuk sinii')
         const {id} = req.params
         try {
             const list = await User.findOne({where : {id}, attributes: { exclude: ['password'] } })
@@ -74,11 +63,9 @@ class UserController {
             next(err)
         }
     }
-
     static async editUser (req, res, next) {
         const { id } = req.params;
         const { visi,misi,image,partai,pekerjaan,pendidikan,username,calon, status,tempat_lahir,tanggal_lahir } = req.body;
-
         const editUser = {
             username,
             status,
@@ -108,7 +95,6 @@ class UserController {
             next (err)
         }
     }
-    
 }
 
 module.exports = {UserController}
