@@ -7,13 +7,11 @@ class RoomController {
           ["1-" + roomData.creator] : 0,
         }
       }
-  
       room.create(newRoom)
       .then(createdRoom => {   
-        callback(null, createdRoom.dataValues) //bawa infomasi room yang baru saja dibuat
+        callback(null, createdRoom.dataValues) 
       })
       .catch(err => {
-        console.log(err)
         callback(err)
       })
   
@@ -26,23 +24,16 @@ class RoomController {
             }
           })
           .then(result => {
-            console.log(result.dataValues,'ini sebelumm')
-              let index = Object.keys(result.players).length //hitung jumlah pemain dalam room untuk indexing player
+              let index = Object.keys(result.players).length
               let playerKey = `${index+1}-${payload.playerName}`
               result.players[playerKey] = 0
               result.changed("players", true)
-              // console.log(result.dataValues,'sesudah change')
-            //   console.log(result.dataValues,'ini result')
-            //   return Promise.all([result.save(), playerKey])
-            callback(null, {...result.dataValues, playerKey}) //jika berhasil, bawa data room yang telah terupdate dengan pemain baru agar dapat diambil oleh listener job nya
+            callback(null, {...result.dataValues, playerKey})
             })
-        //     .then(([result, playerKey]) => {
-        //   })
           .catch(err => {  
             callback(err)
           })
     }
-  
     static findAll(callback){
       room.findAll({
         order: [
@@ -54,10 +45,8 @@ class RoomController {
       })
       .catch(err => {
         callback(err)
-      })
-      
+      }) 
     }
-  
     static delete(roomName, callback){
       room.destroy({
         where : {
@@ -65,7 +54,6 @@ class RoomController {
         }
       })
       .then(result => {
-        console.log("Success delete room")
         callback(null)
       })
       .catch(err => {
