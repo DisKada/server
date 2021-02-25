@@ -25,10 +25,10 @@ module.exports = {
         type: Sequelize.STRING,
       },
       visi: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       misi: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       image: {
         type: Sequelize.STRING

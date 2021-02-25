@@ -77,7 +77,7 @@ class UserController {
 
     static async editUser (req, res, next) {
         const { id } = req.params;
-        const { visi,misi,image,partai,pekerjaan,pendidikan,username,calon, status } = req.body;
+        const { visi,misi,image,partai,pekerjaan,pendidikan,username,calon, status,tempat_lahir,tanggal_lahir } = req.body;
 
         const editUser = {
             username,
@@ -88,7 +88,9 @@ class UserController {
             partai,
             pekerjaan,
             pendidikan,
-            calon
+            calon,
+            tempat_lahir,
+            tanggal_lahir
         }
         try {
             const user = await User.findOne( { where: { id } } )
